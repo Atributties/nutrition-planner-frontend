@@ -1,3 +1,14 @@
+
+const numberOfDaysInput = document.getElementById("numberOfDays");
+const selectedValue = document.getElementById("selectedValue");
+const submitButton = document.getElementById("submitButton");
+
+selectedValue.textContent = numberOfDaysInput.value;
+
+numberOfDaysInput.addEventListener("input", function (){
+    selectedValue.textContent = numberOfDaysInput.value;
+});
+
 function fetchChatGPT() {
     // Get user input values
     const gender = document.getElementById("gender").value;
@@ -29,6 +40,12 @@ function fetchChatGPT() {
         .then(data => {
             // Display the response in the 'response' div
             document.getElementById("response").innerText = JSON.stringify(data, null, 2);
+            alert("Form submitted succesfully");
+            window.location.reload();
         })
         .catch(error => console.error('Error:', error));
+    alert("Failed Form submission");
+    window.location.reload();
 }
+
+submitButton.addEventListener("click", fetchChatGPT)

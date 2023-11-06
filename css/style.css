@@ -1,0 +1,12 @@
+#chatForm label {
+    display: inline-block; /* This makes each label appear on a new line */
+    width: 120px; /* Set a fixed width for the labels */
+    margin-bottom: 10px; /* Adds space between labels */
+}
+
+#chatForm input {
+    width: 150px; /* Makes the input fields take up the full width of their container */
+    padding: 5px; /* Adds some padding inside the input fields for spacing */
+    margin-right: 40px;
+}
+

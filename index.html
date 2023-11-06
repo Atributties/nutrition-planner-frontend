@@ -5,29 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChatGPT Nutrition Planner</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100">
 <h1 class="mt-10 ml-6">ChatGPT Nutrition Planner</h1>
 <h2 class="mt-10 mb-10 ml-6">Fill out the form below to generate a meal plan</h2>
 
 <form id="chatForm" class="ml-6">
+  <label for="Name">Name:</label>
+  <input class="shadow" type="text" id="name" name="Name" required><br>
+
   <label for="gender">Gender:</label>
-  <input class="shadow" type="text" id="gender" name="gender" required>
+  <input class="shadow" type="text" id="gender" name="gender" required><br>
 
   <label for="nutritionType">Nutrition Type:</label>
-  <input class="shadow" type="text" id="nutritionType" name="nutritionType" required>
+  <input class="shadow" type="text" id="nutritionType" name="nutritionType" required><br>
 
   <label for="weight">Weight (kg):</label>
-  <input class="shadow" type="number" id="weight" name="weight" step="0.01" required>
+  <input class="shadow" type="number" id="weight" name="weight" step="0.01" required><br>
 
   <label for="height">Height (cm):</label>
-  <input class="shadow" type="number" id="height" name="height" step="0.01" required>
+  <input class="shadow" type="number" id="height" name="height" step="0.01" required><br>
 
   <label for="numberOfDays">Number of Days:</label>
-  <input class="shadow" type="number" id="numberOfDays" name="numberOfDays" required>
+  <span id="selectedValue">4</span><br>
+  <input class="shadow" type="range" id="numberOfDays" name="numberOfDays" min="1" max="7" required>
+  <br>
 
-  <button class="mt-5" type="button" onclick="fetchChatGPT()">Submit</button>
+  <button class="mt-5" type="button" id="submitButton">Submit</button>
 </form>
 
 <div id="response" class="bg-white p-4 rounded-md shadow-md mt-4 ml-4 h-32 w-72">
