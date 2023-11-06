@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nutrition Planner</title>
+</head>
+<body>
+<h1>Nutrition Planner</h1>
+
+<h3>Welcome to the nutrition planner</h3>
+<p>Take control of your health and well-being with our personalized nutrition planner.<br>
+  Please provide the following information to get started on your journey to a healthier lifestyle.</p>
+
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="age">Age:</label>
+  <input type="number" id="age" name="age" required><br><br>
+
+  <label for="weight">Weight (kg):</label>
+  <input type="number" id="weight" name="weight" required><br><br>
+
+  <label for="height">Height (cm):</label>
+  <input type="number" id="height" name="height" required><br><br>
+
+  <label for="allergies">Allergies:</label>
+  <input type="text" id="allergies" name="allergies"><br><br>
+
+  <label for="fitness-type">Fitness Type:</label>
+  <select id="fitness-type" name="fitness-type">
+    <option value="cardio">Cardio</option>
+    <option value="strength">Strength Training</option>
+    <option value="flexibility">Flexibility</option>
+    <option value="other">Other</option>
+  </select><br><br>
+
+  <label for="number-of-days">Number of Days:</label>
+  <input type="number" id="number-of-days" name="number-of-days" required><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+<div id="responseDiv"></div>
+</body>
+<script src="js/index.js"></script>
+</html>
