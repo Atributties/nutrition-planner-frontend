@@ -15,11 +15,14 @@
   <label for="Name">Name:</label>
   <input class="shadow" type="text" id="name" name="Name" required><br>
 
+  <label for="age">Age:</label>
+  <input class="shadow" type="number" id="age" name="age" required><br>
+
   <label for="gender">Gender:</label>
   <select class="shadow" id="gender" name="gender" required></select><br>
 
   <label for="nutritionType">Nutrition Type:</label>
-    <select class="shadow" id="nutritionType" name="nutritionType" required></select><br>
+  <select class="shadow" id="nutritionType" name="nutritionType" required></select><br>
 
   <label for="weight">Weight (kg):</label>
   <input class="shadow" type="number" id="weight" name="weight" step="0.01" required><br>
@@ -27,15 +30,23 @@
   <label for="height">Height (cm):</label>
   <input class="shadow" type="number" id="height" name="height" step="0.01" required><br>
 
+  <label for="activityLevel">Activity Level:</label>
+  <select class="shadow" id="activityLevel" name="activityLevel" required></select><br>
+
   <label for="numberOfDays">Number of Days:</label>
   <span id="selectedValue">4</span><br>
   <input class="shadow" type="range" id="numberOfDays" name="numberOfDays" min="1" max="7" required>
   <br>
 
-  <button class="mt-5" type="button" id="submitButton">Submit</button>
+  <button class="mt-5 mb-5 bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded" type="button"
+          id="submitButton">
+    Submit
+  </button>
+
+
 </form>
 
-<div id="response" class="bg-white p-4 rounded-md shadow-md mt-4 ml-4 h-32 w-72">
+<div id="response" class="ml-6">
   <!-- Your response content here -->
 </div>
 

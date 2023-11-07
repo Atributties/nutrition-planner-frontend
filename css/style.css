@@ -10,3 +10,48 @@
     margin-right: 40px;
 }
 
+#response {
+    overflow-wrap: break-word;
+    /* Add any other styles you need */
+    /* For example: */
+    max-width: 100%;
+    white-space: pre-wrap;
+}
+
+/* Customize the range input styles */
+input[type="range"] {
+    /* Set the track color to grey */
+    background-color: #ccc;
+    /* Remove the default track border */
+    border: none;
+    /* Set the thumb color to white */
+    cursor: pointer;
+    /* Customize other styles as needed */
+    height: 10px;
+    width: 100%;
+}
+
+/* Set the thumb color to white */
+input[type="range"]::-webkit-slider-thumb {
+    background-color: #fff;
+    /* Customize other styles as needed */
+    border: 1px solid #ccc;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Adjust the thumb appearance in Firefox */
+input[type="range"]::-moz-range-thumb {
+    background-color: #fff;
+    /* Customize other styles as needed */
+    border: 1px solid #ccc;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+

@@ -5,9 +5,10 @@ const selectedValue = document.getElementById("selectedValue");
 const submitButton = document.getElementById("submitButton");
 const urlGenders = "http://localhost:8080/genders";
 const urlNutritions = "http://localhost:8080/nutritionTypes";
+const urlActivityLevels = "http://localhost:8080/activityLevels";
 selectedValue.textContent = numberOfDaysInput.value;
 
-numberOfDaysInput.addEventListener("input", function (){
+numberOfDaysInput.addEventListener("input", function () {
     selectedValue.textContent = numberOfDaysInput.value;
 });
 let genders = [];
@@ -33,13 +34,25 @@ async function fetchNutritions() {
     }
 }
 
+async function fetchActivityLevels() {
+    try {
+        const activityLevels = await fetchAnyUrl(urlActivityLevels); // Update the URL
+        const activityLevelDropdown = document.getElementById("activityLevel");
+        activityLevelDropdown.innerHTML = activityLevels.map(level => `<option value="${level}">${level}</option>`).join('');
+    } catch (error) {
+        console.error("Error fetching Activity Levels:", error);
+    }
+}
+
 function fetchChatGPT() {
     // Get user input values
     const gender = document.getElementById("gender").value;
     const nutritionType = document.getElementById("nutritionType").value;
     const weight = parseFloat(document.getElementById("weight").value);
     const height = parseFloat(document.getElementById("height").value);
+    const activityLevel = document.getElementById("activityLevel").value;
     const numberOfDays = parseInt(document.getElementById("numberOfDays").value);
+    const age = parseInt(document.getElementById("age").value);
 
     // Prepare data for the request
     const requestData = {
@@ -47,6 +60,8 @@ function fetchChatGPT() {
             gender: gender,
             weight: weight,
             height: height,
+            age: age,
+            activityLevel: activityLevel,
         },
         nutritionType: nutritionType,
         numberOfDays: numberOfDays,
@@ -60,21 +75,42 @@ function fetchChatGPT() {
         },
         body: JSON.stringify(requestData),
     })
-        .then(response => response.json())
-        .then(data => {
-            // Display the response in the 'response' div
-            document.getElementById("response").innerText = JSON.stringify(data, null, 2);
-            alert("Form submitted succesfully");
-            window.location.reload();
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
         })
-        .catch(error => console.error('Error:', error));
-    alert("Failed Form submission");
-    window.location.reload();
+        .then(data => {
+            // Extract the content of the first message and display it in the 'response' div
+            const messageContent = data[0]?.message?.content || "No response content available";
+            document.getElementById("response").innerText = messageContent;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Failed Form submission. Check the console for details.");
+        })
+        .finally(() => {
+            // Reset the button text to 'Submit' regardless of success or failure
+            submitButton.innerText = 'Submit';
+        });
 }
+
+submitButton.addEventListener("click", function () {
+    submitButton.innerText = 'Processing... Please wait.';
+
+
+    setTimeout(function () {
+        submitButton.innerText = 'Submit';
+        fetchChatGPT(); // Call your existing function after processing is done
+    }, 60000); // 60000 milliseconds = 1 minute
+});
+
 
 submitButton.addEventListener("click", fetchChatGPT)
 document.addEventListener("DOMContentLoaded", function () {
     fetchGenders();
     fetchNutritions();
+    fetchActivityLevels();
 });
 
