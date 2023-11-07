@@ -1,14 +1,34 @@
+import {fetchAnyUrl} from "./module";
 
 const numberOfDaysInput = document.getElementById("numberOfDays");
 const selectedValue = document.getElementById("selectedValue");
 const submitButton = document.getElementById("submitButton");
-
+const urlGenders = "http://localhost:8080/genders";
+const urlNutritions = "http://localhost:8080/nutritionTypes";
 selectedValue.textContent = numberOfDaysInput.value;
 
 numberOfDaysInput.addEventListener("input", function (){
     selectedValue.textContent = numberOfDaysInput.value;
 });
+let genders = [];
+let nutritions = [];
+async function fetchGenders() {
+    try {
+        genders = await fetchAnyUrl(urlGenders); // Use your custom fetchAnyUrl function
+        // Process or display the fetched genders data as needed
+    } catch (error) {
+        console.error("Error fetching Genders:", error);
+    }
+}
 
+async function fetchNutritions() {
+    try {
+        nutritions = await fetchAnyUrl(urlNutritions); // Use your custom fetchAnyUrl function
+        // Process or display the fetched nutrition types data as needed
+    } catch (error) {
+        console.error("Error fetching Nutrition Types:", error);
+    }
+}
 function fetchChatGPT() {
     // Get user input values
     const gender = document.getElementById("gender").value;
