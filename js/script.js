@@ -1,4 +1,4 @@
-import {fetchAnyUrl} from "./module";
+import {fetchAnyUrl} from "./module.js";
 
 const numberOfDaysInput = document.getElementById("numberOfDays");
 const selectedValue = document.getElementById("selectedValue");
@@ -12,10 +12,12 @@ numberOfDaysInput.addEventListener("input", function (){
 });
 let genders = [];
 let nutritions = [];
+
 async function fetchGenders() {
     try {
-        genders = await fetchAnyUrl(urlGenders); // Use your custom fetchAnyUrl function
-        // Process or display the fetched genders data as needed
+        genders = await fetchAnyUrl(urlGenders);
+        const genderDropdown = document.getElementById("gender");
+        genderDropdown.innerHTML = genders.map(gender => `<option value="${gender}">${gender}</option>`).join('');
     } catch (error) {
         console.error("Error fetching Genders:", error);
     }
@@ -23,12 +25,14 @@ async function fetchGenders() {
 
 async function fetchNutritions() {
     try {
-        nutritions = await fetchAnyUrl(urlNutritions); // Use your custom fetchAnyUrl function
-        // Process or display the fetched nutrition types data as needed
+        nutritions = await fetchAnyUrl(urlNutritions);
+        const nutritionDropdown = document.getElementById("nutritionType");
+        nutritionDropdown.innerHTML = nutritions.map(nutrition => `<option value="${nutrition}">${nutrition}</option>`).join('');
     } catch (error) {
         console.error("Error fetching Nutrition Types:", error);
     }
 }
+
 function fetchChatGPT() {
     // Get user input values
     const gender = document.getElementById("gender").value;
@@ -69,3 +73,8 @@ function fetchChatGPT() {
 }
 
 submitButton.addEventListener("click", fetchChatGPT)
+document.addEventListener("DOMContentLoaded", function () {
+    fetchGenders();
+    fetchNutritions();
+});
+
