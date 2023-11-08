@@ -1,16 +1,11 @@
 import {fetchAnyUrl} from "./module.js";
 
-const numberOfDaysInput = document.getElementById("numberOfDays");
 const selectedValue = document.getElementById("selectedValue");
 const submitButton = document.getElementById("submitButton");
 const urlGenders = "http://localhost:8080/genders";
 const urlNutritions = "http://localhost:8080/nutritionTypes";
 const urlActivityLevels = "http://localhost:8080/activityLevels";
-selectedValue.textContent = numberOfDaysInput.value;
 
-numberOfDaysInput.addEventListener("input", function () {
-    selectedValue.textContent = numberOfDaysInput.value;
-});
 let genders = [];
 let nutritions = [];
 
@@ -51,7 +46,6 @@ function fetchChatGPT() {
     const weight = parseFloat(document.getElementById("weight").value);
     const height = parseFloat(document.getElementById("height").value);
     const activityLevel = document.getElementById("activityLevel").value;
-    const numberOfDays = parseInt(document.getElementById("numberOfDays").value);
     const age = parseInt(document.getElementById("age").value);
 
     // Prepare data for the request
@@ -64,7 +58,6 @@ function fetchChatGPT() {
             activityLevel: activityLevel,
         },
         nutritionType: nutritionType,
-        numberOfDays: numberOfDays,
     };
 
     // Make a request to your ChatGPT service (replace with your API endpoint)
