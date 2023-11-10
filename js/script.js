@@ -95,7 +95,6 @@ submitButton.addEventListener("click", function () {
 
     setTimeout(function () {
         submitButton.innerText = 'Submit';
-        fetchChatGPT(); // Call your existing function after processing is done
     }, 60000); // 60000 milliseconds = 1 minute
 });
 
